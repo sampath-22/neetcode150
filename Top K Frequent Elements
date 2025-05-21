@@ -1,0 +1,16 @@
+#Top K Frequent Elements
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        pqr = defaultdict(int)
+        for i in nums:
+            if i in pqr:
+                pqr[i] += 1
+            else:
+                pqr[i] = 1
+
+        sorted_items = sorted(pqr.items(), key=lambda x: x[1], reverse=True)
+        
+        result = [item[0] for item in sorted_items[:k]]
+
+        return result
